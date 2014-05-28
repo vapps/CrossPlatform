@@ -1,12 +1,6 @@
 ﻿using CrossPlatform.Infrastructure.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 
 namespace CrossPlatform.Infrastructure.StoreApp
 {
@@ -14,25 +8,22 @@ namespace CrossPlatform.Infrastructure.StoreApp
     {
         public override RectMini GetWindowBounds()
         {
-            RectMini returnValue = new RectMini();
+            var returnValue = new RectMini();
 
-            var rect = Windows.UI.Xaml.Window.Current.Bounds;
-            if (rect != null)
-            {
-                returnValue.Bottom = rect.Bottom;
-                returnValue.Height = rect.Height;
-                returnValue.Left = rect.Left;
-                returnValue.Right = rect.Right;
-                returnValue.Top = rect.Top;
-                returnValue.Width = rect.Width;
-            }
+            var rect = Window.Current.Bounds;
+            returnValue.Bottom = rect.Bottom;
+            returnValue.Height = rect.Height;
+            returnValue.Left = rect.Left;
+            returnValue.Right = rect.Right;
+            returnValue.Top = rect.Top;
+            returnValue.Width = rect.Width;
 
             return returnValue;
         }
 
         public override object GetCurrentVeiw()
         {
-            var frame = (Windows.UI.Xaml.Controls.Frame)Windows.UI.Xaml.Window.Current.Content;
+            var frame = (Windows.UI.Xaml.Controls.Frame)Window.Current.Content;
             var page = (Windows.UI.Xaml.Controls.Page)frame.Content;
             return page;
         }
@@ -41,19 +32,28 @@ namespace CrossPlatform.Infrastructure.StoreApp
         {
             RectMini returnValue = null;
             var element = obj as FrameworkElement;
-            if (element != null)
+            if (element == null) return null;
+            var buttonTransform = element.TransformToVisual(null);
+            var point = buttonTransform.TransformPoint(new Point());
+            returnValue = new RectMini 
             {
-                GeneralTransform buttonTransform = element.TransformToVisual(null);
-                Point point = buttonTransform.TransformPoint(new Point());
-                returnValue = new RectMini 
-                    {
-                        Left = point.X,
-                        Top = point.Y,
-                        Width = element.ActualWidth,
-                        Height = element.ActualHeight,
-                        Right = point.X + element.ActualWidth,
-                        Bottom = point.Y + element.ActualHeight
-                    };
+                Left = point.X,
+                Top = point.Y,
+                Width = element.ActualWidth,
+                Height = element.ActualHeight,
+                Right = point.X + element.ActualWidth,
+                Bottom = point.Y + element.ActualHeight
+            };
+            return returnValue;
+        }
+
+        public override RectMini GetFocusedElement()
+        {
+            RectMini returnValue = null;
+            var ele = Windows.UI.Xaml.Input.FocusManager.GetFocusedElement();
+            if (ele != null)
+            {
+                returnValue = GetObjectBounds(ele);
             }
             return returnValue;
         }

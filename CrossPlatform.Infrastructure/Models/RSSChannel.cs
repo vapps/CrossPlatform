@@ -32,6 +32,10 @@ namespace CrossPlatform.Infrastructure.Models
 
         public RSSItem currentitem { get; set; }
 
+        public string author { get; set; }
+
+        public string id { get; set; }
+
         public ObservableCollection<RSSItem> items;
     }
 

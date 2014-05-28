@@ -16,7 +16,7 @@ namespace CrossPlatform.Infrastructure.Phone
             MessageBox.Show(content);
         }
 
-        public override async Task<bool> ConfirmAsync(string context, string title = "Confirm")
+        public override async Task<bool> ConfirmAsync(string context, string title = "Confirm", string ok = "OK", string cancel = "Cancel")
         {
             MessageBoxResult result = MessageBoxResult.Cancel;
             await TaskEx.Run(
@@ -31,12 +31,12 @@ namespace CrossPlatform.Infrastructure.Phone
             return result == MessageBoxResult.OK ? true : false;
         }
 
-        public override T GetPropertyValue<T>(object source, string propertyName)
+        public override Task<string> InputBoxTaskAsync(string message, string title = "InputBox", string ok = "OK", string cancel = "Cancel")
         {
             throw new NotImplementedException();
         }
 
-        public override Interfaces.ICommonILC GetILC(System.Collections.IList source, Func<Task> loadDataCallBack)
+        public override T GetPropertyValue<T>(object source, string propertyName)
         {
             throw new NotImplementedException();
         }
@@ -72,6 +72,11 @@ namespace CrossPlatform.Infrastructure.Phone
         }
 
         public override bool GetAvaliableConnection()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object OpenPopup(string contentTypeName, Models.RectMini rect, object popupObject = null)
         {
             throw new NotImplementedException();
         }

@@ -32,5 +32,11 @@ namespace CrossPlatform.Infrastructure
         /// <returns></returns>
         public abstract RectMini GetObjectBounds(object obj);
 
+        /// <summary>
+        /// 포커스가 되어있는 엘리먼트의 크기를 반환
+        /// </summary>
+        /// <returns></returns>
+        public abstract RectMini GetFocusedElement();
+
     }
 }

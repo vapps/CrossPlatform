@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatform.Infrastructure", "CrossPlatform.Infrastructure\CrossPlatform.Infrastructure.csproj", "{8B858194-EFF9-4746-917F-748368BB1B2E}"
 EndProject
@@ -25,13 +25,75 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{4D
 		work.txt = work.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatform.Infrastructure.Phone.Test", "CrossPlatform.Infrastructure.Phone.Test\CrossPlatform.Infrastructure.Phone.Test.csproj", "{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatform.Infrastructure.Silverlight.Test", "CrossPlatform.Infrastructure.Silverlight.Test\CrossPlatform.Infrastructure.Silverlight.Test.csproj", "{B350D4E4-6651-4E50-BE5E-81851752DA11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatform.Infrastructure.StoreApp.Test", "CrossPlatform.Infrastructure.StoreApp.Test\CrossPlatform.Infrastructure.StoreApp.Test.csproj", "{E5A78404-B816-4715-9799-C12393D04DCB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{0723417B-B55E-44F1-8040-243F17548469}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{57AD61F3-AC53-4AF4-A5E3-541DA4223503}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AForge", "AForge", "{708C119F-723A-463A-A848-BEB798846A75}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\portable-aforge-2.2.5.2\CPOL_PixelFormatConversion.htm = Externals\portable-aforge-2.2.5.2\CPOL_PixelFormatConversion.htm
+		Externals\portable-aforge-2.2.5.2\gpl-3.0.txt = Externals\portable-aforge-2.2.5.2\gpl-3.0.txt
+		Externals\portable-aforge-2.2.5.2\Invoice 91.pdf = Externals\portable-aforge-2.2.5.2\Invoice 91.pdf
+		Externals\portable-aforge-2.2.5.2\lgpl-3.0.txt = Externals\portable-aforge-2.2.5.2\lgpl-3.0.txt
+		Externals\portable-aforge-2.2.5.2\README.md = Externals\portable-aforge-2.2.5.2\README.md
+		Externals\portable-aforge-2.2.5.2\Sales-receipt-101.pdf = Externals\portable-aforge-2.2.5.2\Sales-receipt-101.pdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PCL", "PCL", "{BE18601B-91E0-4B78-9755-5D5D6B9027ED}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Fuzzy.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Fuzzy.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Fuzzy.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Fuzzy.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Genetic.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Genetic.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Genetic.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Genetic.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.Formats.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.Formats.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.Formats.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.Formats.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Imaging.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.MachineLearning.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.MachineLearning.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.MachineLearning.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.MachineLearning.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Math.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Math.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Math.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Math.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Neuro.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Neuro.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Neuro.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Neuro.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Vision.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Vision.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Vision.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\AForge.Vision.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.Drawing.dll = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.Drawing.dll
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.Drawing.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.Drawing.pdb
+		Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.pdb = Externals\portable-aforge-2.2.5.2\PCL\Any CPU\Shim.pdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Phone", "Phone", "{F605E87B-10DF-4B64-820D-55D2AFA423DD}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.dll = Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.dll
+		Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.Drawing.dll = Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.Drawing.dll
+		Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.Drawing.pdb = Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.Drawing.pdb
+		Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.pdb = Externals\portable-aforge-2.2.5.2\Phone\Any CPU\Shim.pdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Store", "Store", "{96E75A0A-7BF7-4955-A048-B0E93F6E19D0}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.dll = Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.dll
+		Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.Drawing.dll = Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.Drawing.dll
+		Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.Drawing.pdb = Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.Drawing.pdb
+		Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.pdb = Externals\portable-aforge-2.2.5.2\Store\Any CPU\Shim.pdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{67BCE374-F6FC-4F37-8930-54768AD08633}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.dll = Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.dll
+		Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.Drawing.dll = Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.Drawing.dll
+		Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.Drawing.pdb = Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.Drawing.pdb
+		Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.pdb = Externals\portable-aforge-2.2.5.2\WPF\Any CPU\Shim.pdb
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatform.Infrastructure.StoreAppAForge", "CrossPlatform.Infrastructure.StoreAppAForge\CrossPlatform.Infrastructure.StoreAppAForge.csproj", "{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatform.Infrastructure.81", "CrossPlatform.Infrastructure.81\CrossPlatform.Infrastructure.81.csproj", "{B41DDA37-8CF3-426C-89F9-1714A7AB309D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossPlatform.Infrastructure.WPhone", "CrossPlatform.Infrastructure.WPhone\CrossPlatform.Infrastructure.WPhone.csproj", "{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,79 +171,67 @@ Global
 		{013759FA-DFC4-49C8-8998-7E7B38A62E36}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{013759FA-DFC4-49C8-8998-7E7B38A62E36}.Release|x64.ActiveCfg = Release|Any CPU
 		{013759FA-DFC4-49C8-8998-7E7B38A62E36}.Release|x86.ActiveCfg = Release|Any CPU
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|ARM.ActiveCfg = Debug|ARM
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|ARM.Build.0 = Debug|ARM
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|ARM.Deploy.0 = Debug|ARM
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|x64.ActiveCfg = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|x86.ActiveCfg = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|x86.Build.0 = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Debug|x86.Deploy.0 = Debug|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|Any CPU.ActiveCfg = Release|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|ARM.ActiveCfg = Release|ARM
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|ARM.Build.0 = Release|ARM
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|ARM.Deploy.0 = Release|ARM
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|Mixed Platforms.Build.0 = Release|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|Mixed Platforms.Deploy.0 = Release|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|x64.ActiveCfg = Release|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|x86.ActiveCfg = Release|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|x86.Build.0 = Release|x86
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A}.Release|x86.Deploy.0 = Release|x86
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Release|ARM.ActiveCfg = Release|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Release|x64.ActiveCfg = Release|Any CPU
-		{B350D4E4-6651-4E50-BE5E-81851752DA11}.Release|x86.ActiveCfg = Release|Any CPU
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|ARM.ActiveCfg = Debug|ARM
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|ARM.Build.0 = Debug|ARM
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|ARM.Deploy.0 = Debug|ARM
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|x64.ActiveCfg = Debug|x64
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|x64.Build.0 = Debug|x64
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|x64.Deploy.0 = Debug|x64
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|x86.ActiveCfg = Debug|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|x86.Build.0 = Debug|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Debug|x86.Deploy.0 = Debug|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|ARM.ActiveCfg = Release|ARM
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|ARM.Build.0 = Release|ARM
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|ARM.Deploy.0 = Release|ARM
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|Mixed Platforms.Build.0 = Release|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|Mixed Platforms.Deploy.0 = Release|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|x64.ActiveCfg = Release|x64
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|x64.Build.0 = Release|x64
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|x64.Deploy.0 = Release|x64
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|x86.ActiveCfg = Release|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|x86.Build.0 = Release|x86
-		{E5A78404-B816-4715-9799-C12393D04DCB}.Release|x86.Deploy.0 = Release|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|ARM.Build.0 = Debug|ARM
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|x64.ActiveCfg = Debug|x64
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|x64.Build.0 = Debug|x64
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|x86.ActiveCfg = Debug|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Debug|x86.Build.0 = Debug|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|ARM.ActiveCfg = Release|ARM
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|ARM.Build.0 = Release|ARM
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|x64.ActiveCfg = Release|x64
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|x64.Build.0 = Release|x64
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|x86.ActiveCfg = Release|x86
+		{384E33AE-8807-4087-9BC7-5A84C9C8DC9F}.Release|x86.Build.0 = Release|x86
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Release|x64.ActiveCfg = Release|Any CPU
+		{B41DDA37-8CF3-426C-89F9-1714A7AB309D}.Release|x86.ActiveCfg = Release|Any CPU
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|ARM.ActiveCfg = Debug|ARM
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|ARM.Build.0 = Debug|ARM
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|x86.ActiveCfg = Debug|x86
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Debug|x86.Build.0 = Debug|x86
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|ARM.ActiveCfg = Release|ARM
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|ARM.Build.0 = Release|ARM
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|x86.ActiveCfg = Release|x86
+		{0C88E8DB-FAD3-4ED9-A8F9-E5BD36CDA4EE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{69B8185F-3F38-4A95-ADC7-20ACF40B2E0A} = {24C3CECA-ED13-45FB-A768-EEA7C4293120}
-		{B350D4E4-6651-4E50-BE5E-81851752DA11} = {24C3CECA-ED13-45FB-A768-EEA7C4293120}
-		{E5A78404-B816-4715-9799-C12393D04DCB} = {24C3CECA-ED13-45FB-A768-EEA7C4293120}
+		{708C119F-723A-463A-A848-BEB798846A75} = {57AD61F3-AC53-4AF4-A5E3-541DA4223503}
+		{BE18601B-91E0-4B78-9755-5D5D6B9027ED} = {708C119F-723A-463A-A848-BEB798846A75}
+		{F605E87B-10DF-4B64-820D-55D2AFA423DD} = {708C119F-723A-463A-A848-BEB798846A75}
+		{96E75A0A-7BF7-4955-A048-B0E93F6E19D0} = {708C119F-723A-463A-A848-BEB798846A75}
+		{67BCE374-F6FC-4F37-8930-54768AD08633} = {708C119F-723A-463A-A848-BEB798846A75}
 	EndGlobalSection
 EndGlobal

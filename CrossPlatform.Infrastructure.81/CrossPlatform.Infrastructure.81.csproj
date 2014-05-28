@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B41DDA37-8CF3-426C-89F9-1714A7AB309D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CrossPlatform.Infrastructure._81</RootNamespace>
+    <AssemblyName>CrossPlatform.Infrastructure.81</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;W81_WP81</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Folder Include="Events\" />
+    <Folder Include="Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+    <TargetPlatform Include="Windows, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractControls\Selecter.cs">
+      <Link>AbstractControls\Selecter.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\EtcUtility.cs">
+      <Link>AbstractFunctions\EtcUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\FrameUtility.cs">
+      <Link>AbstractFunctions\FrameUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\ImageUtility.cs">
+      <Link>AbstractFunctions\ImageUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\LiveUtility.cs">
+      <Link>AbstractFunctions\LiveUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\LocationUtitlity.cs">
+      <Link>AbstractFunctions\LocationUtitlity.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\ODataUtility.cs">
+      <Link>AbstractFunctions\ODataUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\SqliteRepository.cs">
+      <Link>AbstractFunctions\SqliteRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\StorageUtility.cs">
+      <Link>AbstractFunctions\StorageUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\ViewUtility.cs">
+      <Link>AbstractFunctions\ViewUtility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\AbstractFunctions\W8Utility.cs">
+      <Link>AbstractFunctions\W8Utility.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Bases\PopupViewModelBase.cs">
+      <Link>Bases\PopupViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Bases\ViewModelBase.cs">
+      <Link>Bases\ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Bases\WebAPIBase.cs">
+      <Link>Bases\WebAPIBase.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Commons\BindableBase.cs">
+      <Link>Commons\BindableBase.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Commons\DelegateCommand.cs">
+      <Link>Commons\DelegateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Commons\Enums.cs">
+      <Link>Commons\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Commons\StaticFunctions.cs">
+      <Link>Commons\StaticFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Extensions\Haversine.cs">
+      <Link>Extensions\Haversine.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Handlers\EventHandlers.cs">
+      <Link>Handlers\EventHandlers.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Helpers\LiveSDKHelper.cs">
+      <Link>Helpers\LiveSDKHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Helpers\RSSHelper.cs">
+      <Link>Helpers\RSSHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Helpers\WebHelper.cs">
+      <Link>Helpers\WebHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Interfaces\ICommonILC.cs">
+      <Link>Interfaces\ICommonILC.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Interfaces\IDataRepository.cs">
+      <Link>Interfaces\IDataRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\CivicAddressPCL.cs">
+      <Link>Models\CivicAddressPCL.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\FileInfoM.cs">
+      <Link>Models\FileInfoM.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\FolderInfoM.cs">
+      <Link>Models\FolderInfoM.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\GeocoordinatePCL.cs">
+      <Link>Models\GeocoordinatePCL.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\ImageInfoM.cs">
+      <Link>Models\ImageInfoM.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\LiveUser.cs">
+      <Link>Models\LiveUser.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\NavigationArgs.cs">
+      <Link>Models\NavigationArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\RectMini.cs">
+      <Link>Models\RectMini.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\RSSChannel.cs">
+      <Link>Models\RSSChannel.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\RSSImage.cs">
+      <Link>Models\RSSImage.cs</Link>
+    </Compile>
+    <Compile Include="..\CrossPlatform.Infrastructure\Models\RSSItem.cs">
+      <Link>Models\RSSItem.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\portable-net45+win8+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\portable-net45+win8+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

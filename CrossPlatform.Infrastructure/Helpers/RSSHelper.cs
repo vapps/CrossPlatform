@@ -113,5 +113,94 @@ namespace CrossPlatform.Infrastructure
             IsBusy = false;
             return returnValue;
         }
+
+        /// <summary>
+        /// Get Rss Channel(Feed) Data
+        /// </summary>
+        /// <param name="channelUrl"></param>
+        /// <returns></returns>
+        public async Task<RSSChannel> GetRSSFeed(string channelUrl)
+        {
+            RSSChannel returnValue = null;
+
+            IsBusy = true;
+            using (HttpClient hc = new HttpClient())
+            {
+                try
+                {
+                    var result = await hc.GetAsync(channelUrl);
+                    if (result != null && result.IsSuccessStatusCode == true)
+                    {
+                        var data = await result.Content.ReadAsStringAsync();
+                        if (data != null)
+                        {
+                            //xml을 xElement라는 객체로 바로 파싱해서 사용한다.
+                            XDocument xmlRSS = XDocument.Parse(data);
+
+                            XNamespace ns = "http://www.w3.org/2005/Atom";
+
+                            var q1 = from rss in xmlRSS.Descendants(ns + "feed")
+                                     let hasImage = string.IsNullOrEmpty(StaticFunctions.GetString(rss.Element(ns + "image"))) == true ? false : true
+                                     select new RSSChannel()
+                                     {
+                                         author = StaticFunctions.GetString(rss.Element(ns + "author")),
+                                         title = StaticFunctions.GetString(rss.Element(ns + "title")),
+                                         link = StaticFunctions.GetStringAttribute(rss.Element(ns + "link"), "href"),
+                                         description = StaticFunctions.GetString(rss.Element(ns + "description")),
+                                         pubdate = StaticFunctions.GetDateTime(rss.Element(ns + "pubDate")),
+                                         language = StaticFunctions.GetString(rss.Element(ns + "language")),
+                                         copyright = StaticFunctions.GetString(rss.Element(ns + "copyright")),
+                                         webmaster = StaticFunctions.GetString(rss.Element(ns + "webMaster")),
+                                         generator = StaticFunctions.GetString(rss.Element(ns + "generator")),
+                                         docs = StaticFunctions.GetString(rss.Element(ns + "docs")),
+                                         id = StaticFunctions.GetString(rss.Element(ns + "id")),
+                                         ttl = StaticFunctions.GetInt(rss.Element(ns + "ttl")),
+                                         image = hasImage ? new RSSImage()
+                                         {
+                                             url = StaticFunctions.GetString(rss.Element(ns + "image").Element(ns + "url")),
+                                             title = StaticFunctions.GetString(rss.Element(ns + "image").Element(ns + "title")),
+                                             link = StaticFunctions.GetString(rss.Element(ns + "image").Element(ns + "link")),
+                                         } : null,
+                                         items = new System.Collections.ObjectModel.ObservableCollection<RSSItem>()
+                                     };
+
+                            var q2 = from item in xmlRSS.Descendants(ns + "entry")
+                                     let hasImage = string.IsNullOrEmpty(StaticFunctions.GetString(item.Element(ns + "image"))) == true ? false : true
+                                     select new RSSItem()
+                                     {
+                                         title = StaticFunctions.GetString(item.Element(ns + "title")),
+                                         pubdate = StaticFunctions.GetDateTime(item.Element(ns + "published")),
+                                         update = StaticFunctions.GetDateTime(item.Element(ns + "updated")),
+                                         id = StaticFunctions.GetString(item.Element(ns + "id")),
+                                         link = StaticFunctions.GetStringAttribute(item.Element(ns + "link"), "href"),
+                                         summary = StaticFunctions.GetString(item.Element(ns + "summary")),
+                                         content = StaticFunctions.GetHtml(item.Element(ns + "content")),
+                                         description = StaticFunctions.GetString(item.Element(ns + "description")),
+                                         category = StaticFunctions.GetString(item.Element(ns + "category")),
+                                         Image_link = hasImage ? StaticFunctions.GetString(item.Element(ns + "image").Element(ns + "link")) : StaticFunctions.GetString(item.Element(ns + "link")),
+                                         Image_title = hasImage ? StaticFunctions.GetString(item.Element(ns + "image").Element(ns + "title")) : StaticFunctions.GetString(item.Element(ns + "title")),
+                                         Image_url = hasImage ? StaticFunctions.GetString(item.Element(ns + "image").Element(ns + "url")) : null,
+                                     };
+
+                            if (q1.Count() > 0)
+                            {
+                                returnValue = q1.First();
+                                foreach (var item in q2)
+                                {
+                                    returnValue.items.Add(item);
+                                }
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+            IsBusy = false;
+            return returnValue;
+        }
     }
 }

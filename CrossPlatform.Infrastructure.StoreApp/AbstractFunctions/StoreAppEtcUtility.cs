@@ -1,30 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
 using System.Reflection;
-using CrossPlatform.Infrastructure.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Windows.System;
-using NotificationsExtensions.ToastContent;
-using Windows.UI.Notifications;
-using Windows.UI.ViewManagement;
-using Windows.ApplicationModel.Background;
-using CrossPlatform.Infrastructure.StoreApp.Commons;
-using Windows.ApplicationModel.Search;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Networking.Connectivity;
+using Windows.System;
+using Windows.UI.Notifications;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
 using CrossPlatform.Infrastructure.Events;
+using CrossPlatform.Infrastructure.Models;
+using CrossPlatform.Infrastructure.StoreApp.Views;
+using Microsoft.Practices.Prism.PubSubEvents;
+using NotificationsExtensions.ToastContent;
+
+// ReSharper disable once CheckNamespace
 
 namespace CrossPlatform.Infrastructure.StoreApp
 {
     public class StoreAppEtcUtility : EtcUtility
     {
         //public override event EventHandler<NavigationArgs> Navigated;
-        IEventAggregator _eventAggregator;
 
-        static MessageDialog _msg;
-        static bool _isShow;
+        private static MessageDialog _msg;
+        private static bool _isShow;
+        private readonly IEventAggregator _eventAggregator;
+        private Popup _currentPopup;
+        private TaskCompletionSource<string> _taskCompletionSource;
 
         public StoreAppEtcUtility(IEventAggregator eventAggregator)
         {
@@ -34,16 +39,23 @@ namespace CrossPlatform.Infrastructure.StoreApp
             NetworkInformation.NetworkStatusChanged += NetworkInformation_NetworkStatusChanged;
         }
 
-        void NetworkInformation_NetworkStatusChanged(object sender)
+        /// <summary>
+        ///     네트워크
+        /// </summary>
+        /// <param name="sender"></param>
+        private void NetworkInformation_NetworkStatusChanged(object sender)
         {
-            var state = GetAvaliableConnection();
+            bool state = GetAvaliableConnection();
             StaticFunctions.InvokeIfRequiredAsync(StaticFunctions.BaseContext,
-            para =>
-            {
-                _eventAggregator.GetEvent<ActionEvent>().Publish(new KeyValuePair<string, object>("NetworkStatusChanged", state));
-            }, null);
+                para =>
+                    _eventAggregator.GetEvent<ActionEvent>()
+                        .Publish(new KeyValuePair<string, object>("NetworkStatusChanged", state)), null);
         }
 
+        /// <summary>
+        ///     메시지박스
+        /// </summary>
+        /// <param name="content"></param>
         public override async void MsgBox(string content)
         {
             if (_msg == null)
@@ -53,45 +65,101 @@ namespace CrossPlatform.Infrastructure.StoreApp
             if (_isShow == false)
             {
                 _isShow = true;
-                var result = await _msg.ShowAsync();
+                await _msg.ShowAsync();
                 _isShow = false;
             }
         }
 
-        public override async Task<bool> ConfirmAsync(string context, string title = "Confirm")
+        /// <summary>
+        ///     메시지박스
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="title"></param>
+        /// <param name="ok"></param>
+        /// <param name="cancel"></param>
+        /// <returns></returns>
+        public override async Task<bool> ConfirmAsync(string context, string title = "Confirm", string ok = "OK",
+            string cancel = "Cancel")
         {
-            MessageDialog msg = new MessageDialog(context, title);
-            msg.Commands.Add(new UICommand("OK", _ => { }, "0"));
-            msg.Commands.Add(new UICommand("Cancel", _ => { }, "1"));
+            var msg = new MessageDialog(context, title);
+            msg.Commands.Add(new UICommand(ok, _ => { }, "0"));
+            msg.Commands.Add(new UICommand(cancel, _ => { }, "1"));
             msg.DefaultCommandIndex = 1;
-            var result = await msg.ShowAsync();
-            if (result.Id.ToString() == "0")
-            {
-                return true;
-            }
-            return false;
+            IUICommand result = await msg.ShowAsync();
+            return result.Id.ToString() == "0";
         }
 
+        public override async Task<string> InputBoxTaskAsync(string message, string title = "InputBox", string ok = "OK",
+            string cancel = "Cancel")
+        {
+            return await InputBoxAsync(message, title, ok, cancel);
+        }
+
+        private IAsyncOperation<string> InputBoxAsync(string message, string title = "InputBox", string ok = "OK",
+            string cancel = "Cancel")
+        {
+            Rect bounds = Window.Current.CoreWindow.Bounds;
+            _currentPopup = new Popup();
+
+            var wide = new DefaultWideView(title, message, ok, cancel) {Width = bounds.Width, Height = bounds.Height};
+            _currentPopup.Child = wide;
+            _currentPopup.Closed +=
+                (s, e) =>
+                {
+                    _taskCompletionSource.TrySetResult(_currentPopup.Tag.ToString());
+                    if (_currentPopup != null) _currentPopup = null;
+                };
+            _currentPopup.IsOpen = true;
+            return AsyncInfo.Run(WaitForClose);
+        }
+
+        private Task<string> WaitForClose(CancellationToken token)
+        {
+            _taskCompletionSource = new TaskCompletionSource<string>();
+            token.Register(() =>
+            {
+                //CancelTokenRegister
+                _currentPopup.IsOpen = false;
+                _taskCompletionSource.SetCanceled();
+                _currentPopup = null;
+            });
+            return _taskCompletionSource.Task;
+        }
+
+
+        /// <summary>
+        ///     프로퍼티
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public override T GetPropertyValue<T>(object source, string propertyName)
         {
             T returnValue = default(T);
-            var pinfo = source.GetType().GetRuntimeProperty(propertyName);
+            PropertyInfo pinfo = source.GetType().GetRuntimeProperty(propertyName);
             if (pinfo != null)
-            { 
-                var result = pinfo.GetValue(source);
+            {
+                object result = pinfo.GetValue(source);
                 if (result != null)
                 {
-                    returnValue = (T)result;
+                    returnValue = (T) result;
                 }
             }
             return returnValue;
         }
 
+        /// <summary>
+        ///     프로퍼티
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public override object GetPropertyValue(object source, string propertyName)
         {
             object returnValue = null;
 
-            var pinfo = source.GetType().GetRuntimeProperty(propertyName);
+            PropertyInfo pinfo = source.GetType().GetRuntimeProperty(propertyName);
             if (pinfo != null)
             {
                 returnValue = pinfo.GetValue(source);
@@ -100,24 +168,28 @@ namespace CrossPlatform.Infrastructure.StoreApp
             {
                 //Content 프로퍼티가 존재하는 오브젝트라면 그 내부에서 한번더 검색
                 pinfo = source.GetType().GetRuntimeProperty("Content");
-                if (pinfo != null)
+                if (pinfo == null) return null;
+                object result = pinfo.GetValue(source);
+                PropertyInfo cpinfo = result.GetType().GetRuntimeProperty(propertyName);
+                if (cpinfo != null)
                 {
-                    var result = pinfo.GetValue(source);
-                    var cpinfo = result.GetType().GetRuntimeProperty(propertyName);
-                    if (cpinfo != null)
-                    {
-                        returnValue = cpinfo.GetValue(source);
-                    }
+                    returnValue = cpinfo.GetValue(source);
                 }
             }
             return returnValue;
         }
 
+        /// <summary>
+        ///     프로퍼티
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public override bool IsExistProperty(object source, string propertyName)
         {
             bool returnValue = false;
 
-            var pinfo = source.GetType().GetRuntimeProperty(propertyName);
+            PropertyInfo pinfo = source.GetType().GetRuntimeProperty(propertyName);
             if (pinfo != null)
             {
                 returnValue = true;
@@ -126,33 +198,39 @@ namespace CrossPlatform.Infrastructure.StoreApp
             {
                 //Content 프로퍼티가 존재하는 오브젝트라면 그 내부에서 한번더 검색
                 pinfo = source.GetType().GetRuntimeProperty("Content");
-                if (pinfo != null)
+                if (pinfo == null) return false;
+                object result = pinfo.GetValue(source);
+                PropertyInfo cpinfo = result.GetType().GetRuntimeProperty(propertyName);
+                if (cpinfo != null)
                 {
-                    var result = pinfo.GetValue(source);
-                    var cpinfo = result.GetType().GetRuntimeProperty(propertyName);
-                    if (cpinfo != null)
-                    {
-                        returnValue = true;
-                    }
+                    returnValue = true;
                 }
             }
 
             return returnValue;
         }
 
+        /// <summary>
+        ///     프로퍼티
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="setValue"></param>
+        /// <returns></returns>
         public override bool SetPropertyValue(object source, string propertyName, object setValue)
         {
-            var returnValue = false;
+            bool returnValue = false;
 
             try
             {
-                var pinfo = source.GetType().GetRuntimeProperty(propertyName);
+                PropertyInfo pinfo = source.GetType().GetRuntimeProperty(propertyName);
                 if (pinfo != null)
                 {
                     pinfo.SetValue(source, setValue);
                     returnValue = true;
                 }
             }
+// ReSharper disable once EmptyGeneralCatchClause
             catch (Exception)
             {
             }
@@ -160,65 +238,111 @@ namespace CrossPlatform.Infrastructure.StoreApp
             return returnValue;
         }
 
-        public override Interfaces.ICommonILC GetILC(System.Collections.IList source, Func<Task> loadDataCallBack)
-        {
-            return new CrossPlatform.Infrastructure.StoreApp.Commons.CommonStoreILC(source, loadDataCallBack);
-        }
-
+        /// <summary>
+        ///     런처
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         public override async Task<bool> LaunchUriAsync(Uri uri)
         {
             return await Launcher.LaunchUriAsync(uri);
         }
 
+        /// <summary>
+        ///     런처
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public override async Task<bool> LaunchUriAsync(Uri uri, object options)
         {
-            return await Launcher.LaunchUriAsync(uri, (LauncherOptions)options);
+            return await Launcher.LaunchUriAsync(uri, (LauncherOptions) options);
         }
 
+        /// <summary>
+        ///     토스트
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="header"></param>
         public override void ToastShow(string body, string header = null)
         {
-            IToastNotificationContent templateContent = null;
+            IToastNotificationContent templateContent;
             if (header == null)
             {
                 templateContent = ToastContentFactory.CreateToastText01();
-                ((IToastText01)templateContent).TextBodyWrap.Text = body;
+                ((IToastText01) templateContent).TextBodyWrap.Text = body;
             }
             else
             {
                 templateContent = ToastContentFactory.CreateToastText02();
-                ((IToastText02)templateContent).TextHeading.Text = header;
-                ((IToastText02)templateContent).TextBodyWrap.Text = body;
+                ((IToastText02) templateContent).TextHeading.Text = header;
+                ((IToastText02) templateContent).TextBodyWrap.Text = body;
             }
 
             ToastNotification toast = templateContent.CreateNotification();
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
 
+        /// <summary>
+        ///     네트워크
+        /// </summary>
+        /// <returns></returns>
         public override bool GetAvaliableConnection()
         {
-            ConnectionProfile internetConnectionProfile = null;
-            internetConnectionProfile = NetworkInformation.GetInternetConnectionProfile();
-
-//            try
-//            {
-//            }
-//            catch (Exception)
-//            {
-//#if DEBUG
-//                throw;
-//#endif
-//            }
+            ConnectionProfile internetConnectionProfile = NetworkInformation.GetInternetConnectionProfile();
 
             if (internetConnectionProfile == null)
             {
                 return false;
             }
             NetworkConnectivityLevel ncl = internetConnectionProfile.GetNetworkConnectivityLevel();
-            if (ncl == NetworkConnectivityLevel.InternetAccess)
-                return true;
+            return ncl == NetworkConnectivityLevel.InternetAccess;
+        }
 
-            return false;
+        /// <summary>
+        ///     팝업
+        /// </summary>
+        /// <param name="contentTypeName"></param>
+        /// <param name="rect"></param>
+        /// <param name="popupObject"></param>
+        /// <returns></returns>
+        public override object OpenPopup(string contentTypeName, RectMini rect, object popupObject = null)
+        {
+            Popup popup;
+
+            var o = popupObject as Popup;
+            if (o != null)
+            {
+                popup = o;
+            }
+            else
+            {
+                popup = new Popup();
+                var contentType = Application.Current.GetType().GetTypeInfo().Assembly.GetType(contentTypeName);
+                //Type contentType = Type.GetType(contentTypeName, false);
+                if (contentType != null)
+                {
+                    object content = Activator.CreateInstance(contentType);
+                    var child = content as FrameworkElement;
+                    if (child != null)
+                    {
+                        popup.Child = child;
+                    }
+                }
+            }
+            popup.HorizontalOffset = rect.Left;
+            popup.VerticalOffset = rect.Top;
+            var element = popup.Child as FrameworkElement;
+            if (element != null)
+            {
+                element.Width = rect.Width;
+                element.Height = rect.Height;
+            }
+
+            //popup.IsLightDismissEnabled = true;
+            popup.IsOpen = true;
+
+            return popup;
         }
     }
-
 }

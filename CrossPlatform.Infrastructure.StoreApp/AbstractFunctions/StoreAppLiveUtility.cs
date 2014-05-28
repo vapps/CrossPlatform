@@ -10,7 +10,7 @@ namespace CrossPlatform.Infrastructure.StoreApp
 {
     public class StoreAppLiveUtility : LiveUtility
     {
-        LiveAuthClient authClient;
+        LiveAuthClient _authClient;
 
         /// <summary>
         /// 로그인
@@ -21,14 +21,13 @@ namespace CrossPlatform.Infrastructure.StoreApp
         {
             //AuthClient는 프로퍼티
             if (AuthClient == null)
-                AuthClient = authClient = new LiveAuthClient();
+                AuthClient = _authClient = new LiveAuthClient();
             else
-                authClient = (LiveAuthClient)AuthClient;
-              
-            LiveLoginResult authResult = null;
+                _authClient = (LiveAuthClient)AuthClient;
+
             try
             {
-                authResult = await authClient.LoginAsync(scopes);
+                var authResult = await _authClient.LoginAsync(scopes);
                 if (authResult != null && authResult.Status == LiveConnectSessionStatus.Connected)
                 {
                     await LoadUser();
@@ -43,13 +42,13 @@ namespace CrossPlatform.Infrastructure.StoreApp
         private async Task LoadUser()
         {
             //윈도우 자체에 로그인 되어있으면 로그아웃 앙보여줘도 괜찮은..그렇지 않은 경우는 보여줌
-            Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator aut = new Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator();
+            var aut = new Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator();
             IsSignOutPossable = aut.CanSignOut;
 
             IsBusy = true;
             //프로필 로드하고
-            LiveConnectClient client = new LiveConnectClient(authClient.Session);
-            LiveOperationResult liveOpResult = await client.GetAsync("me");
+            var client = new LiveConnectClient(_authClient.Session);
+            var liveOpResult = await client.GetAsync("me");
             User = Newtonsoft.Json.JsonConvert.DeserializeObject<LiveUser>(liveOpResult.RawResult);
             IsSignIn = true;
             IsBusy = false;
@@ -57,7 +56,6 @@ namespace CrossPlatform.Infrastructure.StoreApp
 
         public override bool Logout()
         {
-            var returnValue = false;
             LiveAuthClient authClient;
             if (AuthClient == null)
                 AuthClient = authClient = new LiveAuthClient();
@@ -67,23 +65,21 @@ namespace CrossPlatform.Infrastructure.StoreApp
             authClient.Logout();
             IsSignIn = false;
             User = null;
-            returnValue = true;
 
-            return returnValue;
+            return true;
         }
 
         public override async Task InitializeAsync(IList<string> scopes)
         {
             //AuthClient는 프로퍼티
             if (AuthClient == null)
-                AuthClient = authClient = new LiveAuthClient();
+                AuthClient = _authClient = new LiveAuthClient();
             else
-                authClient = (LiveAuthClient)AuthClient;
+                _authClient = (LiveAuthClient)AuthClient;
 
-            LiveLoginResult authResult = null;
             try
             {
-                authResult = await authClient.InitializeAsync(scopes);
+                var authResult = await _authClient.InitializeAsync(scopes);
                 if (authResult != null && authResult.Status == LiveConnectSessionStatus.Connected)
                 {
                     await LoadUser();

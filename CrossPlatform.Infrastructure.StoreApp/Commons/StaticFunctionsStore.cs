@@ -180,7 +180,7 @@ namespace CrossPlatform.Infrastructure.StoreApp.Commons
                     {
                         imageStream = await hc.GetStreamAsync(imageUri);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //네트워크 상태가 끊어졌을 때
                         bi.UriSource = new Uri(imageUri);

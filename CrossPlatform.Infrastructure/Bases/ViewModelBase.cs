@@ -8,8 +8,9 @@ namespace CrossPlatform.Infrastructure
 {
     public class ViewModelBase : BindableBase
     {
+#if !W81_WP81
         protected Microsoft.Practices.Prism.PubSubEvents.IEventAggregator _eventAggregator;
-
+#endif
         private bool _isBusy;
         /// <summary>
         /// 작업중
@@ -17,7 +18,7 @@ namespace CrossPlatform.Infrastructure
         public bool IsBusy
         {
             get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
+            set { _isBusy = value; OnPropertyChanged(); }
         }
 
         private string _title;
@@ -75,6 +76,19 @@ namespace CrossPlatform.Infrastructure
         public DelegateCommand SizeChangedCommand
         {
             get { return _sizeChangedCommand = _sizeChangedCommand ?? new DelegateCommand(para => SizeChanged()); }
+        }
+
+        private DelegateCommand _goBackCommand;
+        /// <summary>
+        /// 백 커맨드
+        /// </summary>
+        public DelegateCommand GoBackCommand
+        {
+            get 
+            { 
+                return _goBackCommand = _goBackCommand ?? new DelegateCommand(
+                    para => FrameUtility.Instance.GoBack(),
+                    para => FrameUtility.Instance.IsGoBack); }
         }
     }
 }

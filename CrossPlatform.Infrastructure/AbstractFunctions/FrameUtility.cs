@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace CrossPlatform.Infrastructure
 {
@@ -11,6 +12,12 @@ namespace CrossPlatform.Infrastructure
         /// Instance
         /// </summary>
         public static FrameUtility Instance { get; set; }
+
+        /// <summary>
+        /// 등록되어있는 프레임 반환
+        /// </summary>
+        /// <returns></returns>
+        public abstract object GetFrame();
 
         /// <summary>
         /// 프레임 등록
@@ -41,6 +48,16 @@ namespace CrossPlatform.Infrastructure
         /// <param name="key"></param>
         /// <returns></returns>
         public abstract object GetKeepData(string key);
+
+        /// <summary>
+        /// IsGoBack
+        /// </summary>
+        public abstract bool IsGoBack { get; }
+
+        /// <summary>
+        /// GoBack Method
+        /// </summary>
+        public abstract void GoBack();
 
     }
 }

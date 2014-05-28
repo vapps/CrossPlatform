@@ -14,4 +14,9 @@ namespace CrossPlatform.Infrastructure.Events
     /// 시스템 이벤트
     /// </summary>
     public class SystemEvent : Microsoft.Practices.Prism.PubSubEvents.PubSubEvent<KeyValuePair<string, object>> { }
+
+    /// <summary>
+    /// 변경 이벤트
+    /// </summary>
+    public class ChangeEvent : Microsoft.Practices.Prism.PubSubEvents.PubSubEvent<KeyValuePair<string, object>> { }
 }

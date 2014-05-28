@@ -25,8 +25,20 @@ namespace CrossPlatform.Infrastructure
         /// </summary>
         /// <param name="context"></param>
         /// <param name="title"></param>
+        /// <param name="ok"></param>
+        /// <param name="cancel"></param>
         /// <returns></returns>
-        public abstract System.Threading.Tasks.Task<bool> ConfirmAsync(string context, string title = "Confirm");
+        public abstract Task<bool> ConfirmAsync(string context, string title = "Confirm", string ok = "OK", string cancel = "Cancel");
+
+        /// <summary>
+        /// InputBox
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="title"></param>
+        /// <param name="ok"></param>
+        /// <param name="cancel"></param>
+        /// <returns></returns>
+        public abstract Task<string> InputBoxTaskAsync(string message, string title = "InputBox", string ok = "OK", string cancel = "Cancel");
 
         /// <summary>
         /// Navigated Event handler
@@ -67,15 +79,6 @@ namespace CrossPlatform.Infrastructure
         /// <returns></returns>
         public abstract bool SetPropertyValue(object source, string propertyName, object setValue);
 
-
-        /// <summary>
-        /// Get ILC Collection
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public abstract CrossPlatform.Infrastructure.Interfaces.ICommonILC GetILC(System.Collections.IList source, Func<System.Threading.Tasks.Task> loadDataCallBack);
-
         /// <summary>
         /// LaunchUriAsync
         /// </summary>
@@ -103,5 +106,14 @@ namespace CrossPlatform.Infrastructure
         /// </summary>
         /// <returns></returns>
         public abstract bool GetAvaliableConnection();
+
+        /// <summary>
+        /// Popup Open
+        /// </summary>
+        /// <param name="contentTypeName"></param>
+        /// <param name="rect"></param>
+        /// <param name="popupObject"></param>
+        /// <returns></returns>
+        public abstract object OpenPopup(string contentTypeName, RectMini rect, object popupObject = null);
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Windows.UI.Xaml;
 
 namespace CrossPlatform.Infrastructure.StoreApp.Behaviors
@@ -50,12 +45,12 @@ namespace CrossPlatform.Infrastructure.StoreApp.Behaviors
         {
             get
             {
-                return (ICommand)this.GetValue(CommandProperty);
+                return (ICommand)GetValue(CommandProperty);
             }
 
             set
             {
-                this.SetValue(CommandProperty, value);
+                SetValue(CommandProperty, value);
             }
         }
 
@@ -99,11 +94,11 @@ namespace CrossPlatform.Infrastructure.StoreApp.Behaviors
 
         public object Execute(object sender, object parameter)
         {
-            FrameworkElement element = sender as FrameworkElement;
+            var element = sender as FrameworkElement;
 
             if (element != null && Command != null && Command.CanExecute(CommandParameter))
             {
-                Command.Execute(CommandParameter == null && PassEventArgsToCommand == true ? parameter : this.CommandParameter);
+                Command.Execute(CommandParameter == null && PassEventArgsToCommand == true ? parameter : CommandParameter);
             }
 
             return null;

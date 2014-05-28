@@ -93,11 +93,11 @@ namespace CrossPlatform.Infrastructure
                         int idate;
                         if (int.TryParse(x.Value, out idate))
                         {
-                            returnValue = DateTime.Parse(idate.ToString("####-##-##"));
+                            returnValue = DateTime.Parse(idate.ToString("####-##-##")).ToLocalTime();
                         }
                         else
                         {
-                            returnValue = DateTime.Parse(x.Value);
+                            returnValue = DateTime.Parse(x.Value).ToLocalTime();
                         }
                         break;
                 }
@@ -173,6 +173,53 @@ namespace CrossPlatform.Infrastructure
             if (!string.IsNullOrEmpty(returnValue))
             {
                 return new Uri(returnValue);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 문자열 속성 반환
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string GetStringAttribute(object element, string attributeName)
+        {
+            string returnValue = string.Empty;
+
+            if (element != null)
+            {
+                switch (element.GetType().Name)
+                {
+                    case "XElement":
+                        XElement x = element as XElement;
+                        if (x.Attribute(attributeName) != null)
+                            returnValue = x.Attribute(attributeName).Value;
+                        break;
+                }
+            }
+            return returnValue;
+        }
+
+
+        public static string GetHtml(object element)
+        {
+            string returnValue = string.Empty;
+
+            if (element != null)
+            {
+                switch (element.GetType().Name)
+                {
+                    case "XElement":
+                        XElement x = element as XElement;
+                        returnValue = x.FirstNode.ToString();
+                        break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(returnValue))
+            {
+                return returnValue;
             }
 
             return null;
@@ -314,5 +361,31 @@ namespace CrossPlatform.Infrastructure
                 return obj;
             }
         }
+
+        ///// <summary>
+        ///// 리소스 파일 타입
+        ///// </summary>
+        //public static Type ResourceType;
+
+        //private static ResourceManager rm;
+        ///// <summary>
+        ///// 리소스 반환 - ResourceType반드시 지정
+        ///// </summary>
+        ///// <param name="key"></param>
+        ///// <returns></returns>
+        //public static string GetResData(string key)
+        //{
+        //    var returnValue = string.Empty;
+        //    if (ResourceType == null) return returnValue;
+
+        //    rm = rm ?? new ResourceManager(ResourceType);
+        //    returnValue = rm.GetString(key);
+        //    return returnValue;
+        //}
+
+        /// <summary>
+        /// DynamicResource object set
+        /// </summary>
+        public static dynamic DResource;
     }
 }

@@ -34,5 +34,19 @@ namespace CrossPlatform.Infrastructure
         /// </summary>
         public abstract void RegisterBackgroundTaskTimeTrigger(string taskName, string taskEntryPoint);
 
+        /// <summary>
+        /// Set DataRequest - Share Contract
+        /// </summary>
+        public abstract void SetDataRequest();
+
+        /// <summary>
+        /// Unset DataRequest
+        /// </summary>
+        public abstract void UnsetDataRequest();
+
+        /// <summary>
+        /// Show Share UI
+        /// </summary>
+        public abstract void ShowShareUI();
     }
 }

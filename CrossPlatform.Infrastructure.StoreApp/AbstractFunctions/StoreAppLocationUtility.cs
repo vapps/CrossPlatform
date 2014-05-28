@@ -1,15 +1,10 @@
-﻿using CrossPlatform.Infrastructure.Handlers;
-using CrossPlatform.Infrastructure.Models;
+﻿using CrossPlatform.Infrastructure.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 
 namespace CrossPlatform.Infrastructure.StoreApp
 {
-    public class StoreAppLocationUtility : CrossPlatform.Infrastructure.LocationUtitlity
+    public class StoreAppLocationUtility : LocationUtitlity
     {
         Geolocator _geolocator;
         Geoposition _geoposition;
@@ -108,11 +103,9 @@ namespace CrossPlatform.Infrastructure.StoreApp
         {
             //System.Diagnostics.Debug.WriteLine("geolocator_PositionChanged " + para.Position.Coordinate.Point.Position.Latitude.ToString() + " " + para.Position.Coordinate.Point.Position.Longitude.ToString());
             _geoposition = para.Position;
-            if (_geoposition != null)
-            {
-                _geolocator.MovementThreshold = 10;
-                _geolocator.ReportInterval = 1000;
-            }
+            if (_geoposition == null) return;
+            _geolocator.MovementThreshold = 10;
+            _geolocator.ReportInterval = 1000;
         }
 
 
